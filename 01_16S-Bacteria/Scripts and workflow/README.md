@@ -40,9 +40,7 @@ cd ~/qiime_project/fastq_files
 cp *.fastq.gz ~/qiime_project/fastq_files/
 
 # Prepare Manifest file
-sample-id
-forward-absolute-filepath
-reverse-absolute-filepath
+includes- sample-id, forward-absolute-filepath and reverse-absolute-filepath
 
 ## 2. Data Import
 Raw data imported into QIIME 2 using manifest file, sample meatdata provided in TSV format. The imported sequences wee stored in QIIME 2 artifact as - Demultiplexed sequence artifact (.qza)
