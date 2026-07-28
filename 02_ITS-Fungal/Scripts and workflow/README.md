@@ -99,7 +99,7 @@ qiime dada2 denoise-paired \
 --p-trim-left-f 0\
 --p-trim-left-r 0 \
 --p-trunc-len-f 250 \
---p-trunc-len-r 235 \
+--p-trunc-len-r 240 \
 --o-table table.qza \
 --o-representative-sequences rep-seqs.qza \
 --o-denoising-stats denoising-stats.qza
@@ -170,7 +170,7 @@ Alpha diversity metrics used to estimate sample diversity within  and beta diver
 qiime diversity core-metrics-phylogenetic \
 --i-phylogeny rooted-tree.qza \
 --i-table table.qza \
---p-sampling-depth  \
+--p-sampling-depth 240 \
 --m-metadata-file Metadata_16s.tsv \
 --output-dir core-metrics-results
 
@@ -311,12 +311,36 @@ Abundance bar plots
 This is the complete R console workflow followed for the UNITE visualizations making. 
 
 ## 10. Functional prediction 
-Functional profiling of the bacterial communities was performed using the PICRUSt2. Predicted functional pathways and gene family abundances were obtained from the ASV and representative sequences. PICRUSt2 was done in Galaxy Europe platform.
+Functional profiling of the fungal communities was performed using the FunFun v0.1.15 in ubuntu 
 
-Steps involved include- 
+# Create analysis environment
 
-1. Uploaded the ASV feature table and representative sequences exported from QIIME 2.
-2. Searched for *PICRUSt2* in the Galaxy tools panel.
-3. Selected the feature table and representative sequences as input.
-4. Executed the PICRUSt2 workflow using the recommended default parameters.
-5. Downloaded the predicted functional pathway and gene family output files for downstream analysis.
+conda create -n funfun python=3.10
+conda activate funfun
+
+# Install FunFun
+
+pip install funfun
+
+conda activate funfun
+
+funfun --help
+
+# Export sequences
+
+qiime tools export \
+    --input-path rep-seqs.qza \
+    --output-path exported_sequences
+
+# Output
+dna-sequences.fasta
+
+# Run FunFun
+funfun exported_sequences/dna-sequences.fasta \
+    --concat \
+    -o FunFun_results
+
+# Output 
+Results.tsv
+Functional_community.html
+logs/
