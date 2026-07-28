@@ -7,9 +7,7 @@ This section contain the bioinformatics workflow done for bacterial 16S s
 to assess the bacterial community composition 
 
 ## Software
-QIIME2
-R
-Galaxy
+QIIME2, R and Galaxy
 
 ## Folder
 Scripts and workflow - include scripts, commnads and workflow used in the analysis
