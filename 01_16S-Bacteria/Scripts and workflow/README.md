@@ -96,10 +96,10 @@ DADA2 was used to perform quality filter, trim , denoise , merging ad chimera re
 
 qiime dada2 denoise-paired \
 --i-demultiplexed-seqs demux.qza \
---p-trim-left-f 17 \
---p-trim-left-r 21 \
---p-trunc-len-f 250 \
---p-trunc-len-r 235 \
+--p-trim-left-f 0 \
+--p-trim-left-r 0 \
+--p-trunc-len-f 240 \
+--p-trunc-len-r 240 \
 --o-table table.qza \
 --o-representative-sequences rep-seqs.qza \
 --o-denoising-stats denoising-stats.qza
@@ -193,7 +193,7 @@ Alpha diversity metrics used to estimate sample diversity within  and beta diver
 qiime diversity core-metrics-phylogenetic \
 --i-phylogeny rooted-tree.qza \
 --i-table table.qza \
---p-sampling-depth 7500 \
+--p-sampling-depth 10000 \
 --m-metadata-file Metadata_16s.tsv \
 --output-dir core-metrics-results
 
@@ -334,9 +334,9 @@ Abundance bar plots
 This is the complete R console workflow followed for the Greengenes and SILVA analysed visualizations making. 
 
 ## 10. Functional prediction 
-functional profiling of the bacterial communities was performed using the PICRUSt2. Predicted functional pathways and geen family abundaces were obtained from the ASV and representative sequences. PICRUSt2 was done in Galaxy Europe platform.
+Functional profiling of the bacterial communities was performed using the PICRUSt2. Predicted functional pathways and gene family abundaces were obtained from the ASV and representative sequences. PICRUSt2 was done in Galaxy Europe platform.
 
-steps involved include- 
+Steps involved include- 
 
 1. Uploaded the ASV feature table and representative sequences exported from QIIME 2.
 2. Searched for *PICRUSt2* in the Galaxy tools panel.
